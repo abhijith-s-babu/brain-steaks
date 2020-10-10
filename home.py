@@ -3,7 +3,7 @@ import sys
 import untitled2
 
 pygame.init()
-mydis = pygame.display.set_mode((1000,700),pygame.RESIZABLE)
+mydis = pygame.display.set_mode((1000,700))
 headcolor = (255,0,50)
 txtcolor = (255,13,0)
 btncolor = (240,240,240)
