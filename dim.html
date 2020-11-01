@@ -1,0 +1,26 @@
+<html>
+
+<body style="background-color:#00ffff";>
+<center>
+<canvas id = "main" width = "1000px" height = "700px">
+</canvas>
+
+<script>
+can = document.getElementById("main");
+surf = can.getContext("2d");
+surf.globalAlpha = 1;
+surf.strokeStyle = "black";
+surf.globalAlpha = 1;
+surf.strokeStyle = "white";
+surf.strokeRect(1,1,998,698);
+surf.strokeRect(0,0,1000,700);
+surf.globalAlpha = 0.4;
+surf.fllstyle = "#00000111";
+surf.fillRect(0,0,1000,700)
+
+var uri = can.toDataURL();
+console.log(uri);
+</script>
+</body>
+
+</html>
