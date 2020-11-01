@@ -1,0 +1,51 @@
+<html>
+
+<body>
+<style>
+body {
+  background-image: url('blackbg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+<center>
+<canvas id = "main" width = "1000px" height = "700px">
+</canvas>
+
+<script>
+can = document.getElementById("main");
+surf = can.getContext("2d");
+//surf.globalAlpha = 0.1;
+//surf.fillStyle = "black";
+//surf.fillRect(0,0,1000,700);
+surf.fillStyle = "white";
+surf.globalAlpha = 0.95;
+surf.strokeRect(1,1,998,698);
+surf.fillStyle = "#22222250"
+surf.fillRect(2,2,996,696);
+var grd = surf.createLinearGradient(500, 0, 990, 300);
+grd.addColorStop(0.4, "#eec8ac");
+grd.addColorStop(0.6, "#eec8ac");
+grd.addColorStop(0, "#dddddd");
+grd.addColorStop(1, "#dddddd");
+surf.fillStyle = grd;
+
+surf.fillRect(430,240,140,120);
+surf.fillRect(430,520,140,120);
+surf.fillRect(590,240,140,120);
+surf.fillRect(590,380,140,120);
+surf.fillRect(270,380,140,120);
+surf.fillRect(270,520,140,120);
+surf.fillRect(750,600,200,70);
+surf.globalAlpha = 0.8;
+surf.fillRect(340,100,320,70);
+
+surf.globalAlpha = 0.2;
+surf.fillStyle = "#ff5e00";
+surf.fillRect(340,100,320,70);
+
+</script>
+</body>
+
+</html>
