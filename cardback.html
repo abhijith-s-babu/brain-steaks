@@ -1,0 +1,45 @@
+<html>
+
+<body style="background-color:#000000";>
+<center>
+<br><br><br>
+<canvas id = "main" width = "135px" height = "170px">
+</canvas>
+
+<script>
+can = document.getElementById("main");
+surf = can.getContext("2d");
+surf.globalAlpha = 1;
+var grdr = surf.createRadialGradient(775,80,0,775,80,600);
+grdr.addColorStop(1, "#22999928");
+grdr.addColorStop(0, "#ffff0028");
+var grd1 = surf.createLinearGradient(0, 0, 0, 170);
+grd1.addColorStop(1, "#cccc00b8");
+grd1.addColorStop(0, "#ff0000e8");
+var grd2 = surf.createLinearGradient(0, 0, 135, 0);
+grd2.addColorStop(0, "#eeee0088");
+grd2.addColorStop(1, "#22551568");
+var grd3 = surf.createLinearGradient(0, 0, 0, 170);
+grd3.addColorStop(0, "#0051ef88");
+grd3.addColorStop(1, "#0081ff88");
+var grd4 = surf.createLinearGradient(0, 0, 135, 0);
+grd4.addColorStop(1, "#0021ef88");
+grd4.addColorStop(0, "#0021ff88");
+
+surf.fillStyle = "#eeff00";
+surf.fillRect(0,0,180,170);
+surf.fillStyle = grd1;
+surf.fillRect(0,0,180,170);
+surf.fillStyle = grd2;
+surf.fillRect(0,0,180,170);
+
+
+
+
+
+var uri = can.toDataURL();
+console.log(uri);
+</script>
+</body>
+
+</html>
