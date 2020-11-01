@@ -1,0 +1,47 @@
+<html>
+
+<body style="background-color:#000000";>
+<center>
+<canvas id = "main" width = "1000px" height = "700px">
+</canvas>
+
+<script>
+can = document.getElementById("main");
+surf = can.getContext("2d");
+surf.globalAlpha = 1;
+surf.strokeStyle = "black";
+surf.globalAlpha = 1;
+surf.strokeStyle = "white";
+surf.strokeRect(1,1,998,698);
+surf.strokeRect(0,0,1000,700);
+var grdr1 = surf.createRadialGradient(835,210,0,835,210,170);
+grdr1.addColorStop(1, "#0090ef");
+grdr1.addColorStop(0, "#00e0ff");
+var grdr2 = surf.createRadialGradient(835,540,0,835,540,170);
+grdr2.addColorStop(1, "#0090ef");
+grdr2.addColorStop(0, "#00b0ff");
+var grd1 = surf.createLinearGradient(0, 0, 0, 700);
+grd1.addColorStop(1, "#00a0ef88");
+grd1.addColorStop(0, "#00a0ff88");
+var grd2 = surf.createLinearGradient(0, 0, 900, 0);
+grd2.addColorStop(0, "#0090efb8");
+grd2.addColorStop(1, "#0090ffb8");
+var grd3 = surf.createLinearGradient(0, 0, 0, 700);
+grd3.addColorStop(0, "#0071ef88");
+grd3.addColorStop(1, "#0081ff88");
+var grd4 = surf.createLinearGradient(0, 0, 900, 0);
+grd4.addColorStop(1, "#0091efb8");
+grd4.addColorStop(0, "#0091ffb8");
+
+
+
+surf.fillStyle = grdr1;
+surf.fillRect(685,219,300,140);
+
+
+var uri = can.toDataURL();
+console.log(uri);
+</script>
+</body>
+
+</html>
