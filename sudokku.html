@@ -1,0 +1,85 @@
+<html>
+
+<body>
+<style>
+body {
+  background-image: url('blackbg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+<center>
+<canvas id = "main" width = "1000px" height = "700px">
+</canvas>
+
+<script>
+can = document.getElementById("main");
+surf = can.getContext("2d");
+surf.globalAlpha = 0.6;
+//surf.fillStyle = "black";
+//surf.fillRect(0,0,1000,700);
+surf.strokeStyle = "white";
+surf.globalAlpha = 1;
+surf.strokeRect(1,1,998,698);
+surf.strokeRect(0,0,1000,700);
+var grd1 = surf.createLinearGradient(230, 110, 770, 300);
+grd1.addColorStop(0, "#ff82f7");
+grd1.addColorStop(1, "#c7ffd7");
+var grd2 = surf.createLinearGradient(300, 0, 990, 300);
+grd2.addColorStop(1, "#000066");
+grd2.addColorStop(0, "#5f0000");
+var grd3 = surf.createLinearGradient(0, 0, 0, 700);
+grd3.addColorStop(1, "#000024");
+grd3.addColorStop(0, "#0000d9");
+var grd4 = surf.createRadialGradient(500, 350, 0, 500, 350, 350);
+grd4.addColorStop(0, "#0004f9");
+grd4.addColorStop(1, "#00b4f5");
+surf.strokeStyle = grd2;
+surf.fillStyle = grd3;
+surf.fillRect(0,0,1000,700);
+
+/*for(i = 230;i<770;i+=60)
+{
+	for(j = 110;j<650;j+=60)
+	{
+		surf.fillRect(i,j,60,60);
+		surf.strokeRect(i,j,60,60);
+	}
+}
+dark = 1;
+surf.lineWidth = "3";
+for(i = 230;i<770;i+=180)
+{
+	for(j = 110;j<650;j+=180)
+	{
+		if(dark == 1)
+		{
+			surf.fillStyle = "#ffcce250";
+			dark = 0;
+		}
+		else
+		{
+			surf.fillStyle = "#ccfeff50";
+			dark = 1;
+		}
+		surf.fillRect(i,j,180,180);
+		surf.strokeRect(i,j,180,180);
+	}
+}
+surf.lineWidth = "1";
+for(i = 230;i<770;i+=60)
+{
+	for(j = 110;j<650;j+=60)
+	{
+		//surf.fillRect(i,j,60,60);
+		surf.strokeRect(i,j,60,60);
+	}
+}
+*/
+var uri = can.toDataURL();
+console.log(uri);
+</script>
+</body>
+
+</html>
