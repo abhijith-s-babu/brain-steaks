@@ -9,6 +9,7 @@ white = (255, 255, 255)
 erase = (200, 0, 255)
 fontObj = pygame.font.Font('freesansbold.ttf', 90)
 fontObj2 = pygame.font.Font('freesansbold.ttf', 50)
+fontObj3 = pygame.font.Font('freesansbold.ttf', 40)
 pygame.display.set_caption("Brain Steaks")
 xscore = 0
 oscore = 0
@@ -32,6 +33,8 @@ class clickable:
             return False
         
 def xox():
+    
+    diag = 0
     
     def initpage():
         nonlocal chance
@@ -79,6 +82,9 @@ def xox():
         chance = fc
     reset_b = clickable(660,420,300,100,10)
     back_b = clickable(660,560,300,100,10)
+    rest_b = clickable(280, 420, 190, 50, 20)
+    bck_b = clickable(530, 420, 190, 50, 20)
+    
     initpage()
     boxes = [[0 for i in range(3)] for i in range(3)]
     taken = []*9
@@ -86,7 +92,6 @@ def xox():
     for i in range(3):
         for j in range(3):
             boxes[i][j] = clickable(20 + i*200, 80 + j*200, 200, 200, 3*i + j)
-    print(boxes[0][2].startx)
     filled = [[0 for i in range(3)] for i in range(3)]
     
     def xwin(): 
@@ -100,22 +105,36 @@ def xox():
         pygame.display.update()
         pygame.time.wait(1000)
         xscore = xscore + 1
-    
+        '''
         textSurfaceObj = fontObj2.render(str(xscore), True, black )
         textRectObjx = textSurfaceObj.get_rect()
         textRectObjx.center = (910,150)
         mydis.blit(textSurfaceObj,textRectObjx)
-        
-        if xscore == 5:       
-            textSurfaceObj = fontObj2.render("X won", True, white )
-            textRectObjx = textSurfaceObj.get_rect()
-            textRectObjx.center = (500,40)
-            mydis.blit(textSurfaceObj,textRectObjx)
+        '''
+        if xscore == 5:
+            
+            img = pygame.image.load("C:\\Users\\ABHIJITHSBABU\\brain steaks\\dim.png")
+            dim = pygame.transform.scale(img, (1000, 700))   
+            img = pygame.image.load("C:\\Users\\ABHIJITHSBABU\\brain steaks\\dialog.png")
+            dial = pygame.transform.scale(img, (1000, 700))          
+            nonlocal diag
+            mydis.blit(dim,(0,0))
+            mydis.blit(dial,(0,0))  
+            textSurfaceObj = fontObj2.render("X won", True, black )
+            textRectObj = textSurfaceObj.get_rect()
+            textRectObj.center = (500,300)
+            mydis.blit(textSurfaceObj,textRectObj)
+            textSurfaceObj = fontObj3.render("RESTART", True, black )
+            textRectObj = textSurfaceObj.get_rect()
+            textRectObj.center = (375,445)
+            mydis.blit(textSurfaceObj,textRectObj)
+            textSurfaceObj = fontObj3.render("BACK", True, black )
+            textRectObj = textSurfaceObj.get_rect()
+            textRectObj.center = (625,445)
+            mydis.blit(textSurfaceObj,textRectObj)
             pygame.display.update()
-            pygame.time.wait(2000)
-            
-            reset_game()
-            
+            diag = 1
+                
         else:
     
             textSurfaceObj = fontObj2.render(str(xscore), True, black )
@@ -146,14 +165,29 @@ def xox():
         
         oscore = oscore + 1
         
-        if oscore == 5:       
-            textSurfaceObj = fontObj2.render("O won", True, white )
-            textRectObjx = textSurfaceObj.get_rect()
-            textRectObjx.center = (500,40)
-            mydis.blit(textSurfaceObj,textRectObjx)
+        if oscore == 5:
+            
+            img = pygame.image.load("C:\\Users\\ABHIJITHSBABU\\brain steaks\\dim.png")
+            dim = pygame.transform.scale(img, (1000, 700))   
+            img = pygame.image.load("C:\\Users\\ABHIJITHSBABU\\brain steaks\\dialog.png")
+            dial = pygame.transform.scale(img, (1000, 700))          
+            nonlocal diag
+            mydis.blit(dim,(0,0))
+            mydis.blit(dial,(0,0))  
+            textSurfaceObj = fontObj2.render("X won", True, black )
+            textRectObj = textSurfaceObj.get_rect()
+            textRectObj.center = (500,300)
+            mydis.blit(textSurfaceObj,textRectObj)
+            textSurfaceObj = fontObj3.render("RESTART", True, black )
+            textRectObj = textSurfaceObj.get_rect()
+            textRectObj.center = (375,445)
+            mydis.blit(textSurfaceObj,textRectObj)
+            textSurfaceObj = fontObj3.render("BACK", True, black )
+            textRectObj = textSurfaceObj.get_rect()
+            textRectObj.center = (625,445)
+            mydis.blit(textSurfaceObj,textRectObj)
             pygame.display.update()
-            pygame.time.wait(2000)
-            reset_game()
+            diag = 1
             
         else:
     
@@ -178,6 +212,7 @@ def xox():
         global fc
         pygame.time.wait(1000)
         initpage()
+        init("drw")
         taken = []
         filled = [[0 for i in range(3)] for i in range(3)]
         
@@ -200,28 +235,31 @@ def xox():
         
     def check():
         for i in range(3):
-            for j in range(3):
                 if filled[i][0] == filled[i][1] and filled[i][2] == filled[i][1]:
                     if filled[i][0] == "X":
                         xwin()
+                        print("x win col")
                     elif filled[i][0] == "O":
                         owin()
                 elif filled[0][i] == filled[1][i] and filled[2][i] == filled[1][i]:
                     if filled[0][i] == "X":
                         xwin()
+                        print("x win row")
                     elif filled[1][i] == "O":
                         owin()
-            if filled[0][0] == filled[1][1] and filled[1][1] == filled[2][2]:
+        if filled[0][0] == filled[1][1] and filled[1][1] == filled[2][2]:
                     if filled[0][0] == "X":
                         xwin()
+                        print("x win lead")
                     elif filled[0][0] == "O":
                         owin()
-            elif filled[0][2] == filled[1][1] and filled[1][1] == filled[2][0]:
+        elif filled[0][2] == filled[1][1] and filled[1][1] == filled[2][0]:
                     if filled[0][2] == "X":
                         xwin()
+                        print("x win dig")
                     elif filled[2][0] == "O":
                         owin()
-            if len(taken) == 9:
+        if len(taken) == 9:
                 draw()
                     
     
@@ -233,6 +271,7 @@ def xox():
                 sys.exit()
                 
             if event.type == pygame.MOUSEBUTTONDOWN:
+             if diag == 0:
                 for i in range(3):
                     for j in range(3):
                         if boxes[i][j].isover(pos) and boxes[i][j] not in taken:
@@ -244,6 +283,7 @@ def xox():
                             taken.append(boxes[i][j])
                             pygame.display.update()
                             check()
+                            
                             if chance == "X":
                                 chance = "O"
                             else:
@@ -252,6 +292,14 @@ def xox():
                     reset_game()
                 if back_b.isover(pos):
                     print("return to previous page")
+                    
+             else:
+                       if rest_b.isover(pos):
+                           reset_game()
+                           diag = 0
+                       if bck_b.isover(pos):
+                           print("go back")
+                           diag = 0
         pygame.display.update()
 
 xox()
