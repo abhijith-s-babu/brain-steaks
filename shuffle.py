@@ -1,13 +1,17 @@
 import pygame
 import sys
+import random
 
 pygame.init()
 mydis = pygame.display.set_mode((1000,700),pygame.RESIZABLE)
-headcolor = (255,0,50)
+white = (255,250,250)
 txtcolor = (255,13,0)
 btncolor = (240,240,240)
 black = (0, 0, 0)
 pygame.display.set_caption("Brain Steaks")
+fontObj1 = pygame.font.Font('freesansbold.ttf', 70)
+fontObj2 = pygame.font.Font('freesansbold.ttf', 50)
+fontObj3 = pygame.font.Font('freesansbold.ttf', 40)
 
 class clickable:
     def __init__(self,startx,starty,w,h,uid):
@@ -27,105 +31,189 @@ class clickable:
             return False
           
 def shuffle():
-    bg = pygame.image.load("blackbg.jpg")
-    bg = pygame.transform.scale(bg, (1000, 700))
-    mydis.blit(bg, (0, 0))
-
-    img1 = pygame.image.load("image_part_005.png")
-    img1 = pygame.transform.scale(img1, (120, 120))
-    mydis.blit(img1, (260, 170))
-    img2 = pygame.image.load("image_part_004.png")
-    img2 = pygame.transform.scale(img2, (120, 120))
-    mydis.blit(img2, (380, 170))
-    img3 = pygame.image.load("image_part_003.png")
-    img3 = pygame.transform.scale(img3, (120, 120))
-    mydis.blit(img3, (500, 170))
-    img4 = pygame.image.load("image_part_002.png")
-    img4 = pygame.transform.scale(img4, (120, 120))
-    mydis.blit(img4, (620, 170))
-    img5 = pygame.image.load("image_part_001.png")
-    img5 = pygame.transform.scale(img5, (120, 120))
-    mydis.blit(img5, (260, 290))
-    img6 = pygame.image.load("image_part_006.png")
-    img6 = pygame.transform.scale(img6, (120, 120))
-    mydis.blit(img6, (380, 290))
-    img7 = pygame.image.load("image_part_012.png")
-    img7 = pygame.transform.scale(img7, (120, 120))
-    mydis.blit(img7, (500, 290))
-    img8 = pygame.image.load("image_part_008.png")
-    img8 = pygame.transform.scale(img8, (120, 120))
-    mydis.blit(img8, (620, 290))
-    img9 = pygame.image.load("C:image_part_009.png")
-    img9 = pygame.transform.scale(img9, (120, 120))
-    mydis.blit(img9, (260, 410))
-    img10 = pygame.image.load("image_part_010.png")
-    img10 = pygame.transform.scale(img10, (120, 120))
-    mydis.blit(img10, (380, 410))
-    img11 = pygame.image.load("image_part_015.png")
-    img11 = pygame.transform.scale(img11, (120, 120))
-    mydis.blit(img11, (500, 410))
-    img12 = pygame.image.load("image_part_007.png")
-    img12 = pygame.transform.scale(img12, (120, 120))
-    mydis.blit(img12, (620, 410))
-    img13 = pygame.image.load("image_part_013.png")
-    img13 = pygame.transform.scale(img13, (120, 120))
-    mydis.blit(img13, (260, 530))
-    img14 = pygame.image.load("image_part_014.png")
-    img14 = pygame.transform.scale(img14, (120, 120))
-    mydis.blit(img14, (380, 530))
-    img15 = pygame.image.load("image_part_011.png")
-    img15 = pygame.transform.scale(img15, (120, 120))
-    mydis.blit(img15, (500, 530))
-    img16 = pygame.image.load("image_part_016.png")
-    img16 = pygame.transform.scale(img16, (120, 120))
-    # mydis.blit(img16,(620,530))
-    pygame.draw.rect(mydis, black, (620, 530, 120, 120))
-    org = pygame.image.load("shuffle.jpg")
-    org = pygame.transform.scale(org, (200, 200))
-    mydis.blit(org, (770, 100))
-
-    imglist = [0] * 16
-    imglist[0] = img1
-    imglist[1] = img2
-    imglist[2] = img3
-    imglist[3] = img4
-    imglist[4] = img5
-    imglist[5] = img6
-    imglist[6] = img7
-    imglist[7] = img8
-    imglist[8] = img9
-    imglist[9] = img10
-    imglist[10] = img11
-    imglist[11] = img12
-    imglist[12] = img13
-    imglist[13] = img14
-    imglist[14] = img15
-
+    back_b = clickable(30, 260, 200, 80, 50)
+    reset_b = clickable(30, 360, 200, 80, 50)
+    rest_b = clickable(280, 420, 190, 50, 20)
+    bck_b = clickable(530, 420, 190, 50, 20)
     clicklist = []
-    imgpos1 = clickable(260, 170, 120, 120, 1)
-    imgpos2 = clickable(380, 170, 120, 120, 2)
-    imgpos3 = clickable(500, 170, 120, 120, 3)
-    imgpos4 = clickable(620, 170, 120, 120, 4)
-    imgpos5 = clickable(260, 290, 120, 120, 5)
-    imgpos6 = clickable(380, 290, 120, 120, 6)
-    imgpos7 = clickable(500, 290, 120, 120, 7)
-    imgpos8 = clickable(620, 290, 120, 120, 8)
-    imgpos9 = clickable(260, 410, 120, 120, 9)
-    imgpos10 = clickable(380, 410, 120, 120, 10)
-    imgpos11 = clickable(500, 410, 120, 120, 11)
-    imgpos12 = clickable(620, 410, 120, 120, 12)
-    imgpos13 = clickable(260, 530, 120, 120, 13)
-    imgpos14 = clickable(380, 530, 120, 120, 14)
-    imgpos15 = clickable(500, 530, 120, 120, 15)
-    imgpos16 = clickable(620, 530, 120, 120, 16)
-
+    randlist = []
+    diag = 0
     moves = 0
+    imglist = [0]*16
+        
+    img = pygame.image.load("C:\\Users\\ABHIJITHSBABU\\brain steaks\\dim.png")
+    dim = pygame.transform.scale(img, (1000, 700))
+        
+    img = pygame.image.load("C:\\Users\\ABHIJITHSBABU\\brain steaks\\dialog.png")
+    dial = pygame.transform.scale(img, (1000, 700))
+    img = [0]*16
+    def reset():
+        nonlocal imglist
+        nonlocal back_b
+        nonlocal reset_b
+        nonlocal bck_b
+        nonlocal rest_b
+        nonlocal clicklist
+        nonlocal moves
+        nonlocal diag
+        imglist = [0]*16
+        bg = pygame.image.load("blackbg.jpg")
+        bg = pygame.transform.scale(bg, (1000, 700))
+        mydis.blit(bg, (0, 0))
+        
+        addmoves()   
+        im1 = pygame.image.load("image_part_001.png")
+        im2 = pygame.image.load("image_part_002.png")
+        im3 = pygame.image.load("image_part_003.png")
+        im4 = pygame.image.load("image_part_004.png")
+        im5 = pygame.image.load("image_part_005.png")
+        im6 = pygame.image.load("image_part_006.png")
+        im7 = pygame.image.load("image_part_007.png")
+        im8 = pygame.image.load("image_part_008.png")
+        im9 = pygame.image.load("image_part_009.png")
+        im10 = pygame.image.load("image_part_010.png")
+        im11 = pygame.image.load("image_part_011.png")
+        im12 = pygame.image.load("image_part_012.png")
+        im13 = pygame.image.load("image_part_013.png")
+        im14 = pygame.image.load("image_part_014.png")
+        im15 = pygame.image.load("image_part_015.png")
+        im16 = pygame.image.load("image_part_016.png")
+        for i in range(1,17):
+            im_str = "im"+str(i)
+            img[i-1] = pygame.transform.scale(eval(im_str),(120,120))
+        randomise()
+    
+        initpage()
 
-    for i in range(16):
-        name = "imgpos" + str(i + 1)
-        ob = eval(name)
-        clicklist.append(ob)
+        clicklist = []
+        imgpos1 = clickable(260, 170, 120, 120, 1)
+        imgpos2 = clickable(380, 170, 120, 120, 2)
+        imgpos3 = clickable(500, 170, 120, 120, 3)
+        imgpos4 = clickable(620, 170, 120, 120, 4)
+        imgpos5 = clickable(260, 290, 120, 120, 5)
+        imgpos6 = clickable(380, 290, 120, 120, 6)
+        imgpos7 = clickable(500, 290, 120, 120, 7)
+        imgpos8 = clickable(620, 290, 120, 120, 8)
+        imgpos9 = clickable(260, 410, 120, 120, 9)
+        imgpos10 = clickable(380, 410, 120, 120, 10)
+        imgpos11 = clickable(500, 410, 120, 120, 11)
+        imgpos12 = clickable(620, 410, 120, 120, 12)
+        imgpos13 = clickable(260, 530, 120, 120, 13)
+        imgpos14 = clickable(380, 530, 120, 120, 14)
+        imgpos15 = clickable(500, 530, 120, 120, 15)
+        imgpos16 = clickable(620, 530, 120, 120, 16)
+        
+        moves = 0
+        
+        for i in range(16):
+            name = "imgpos" + str(i + 1)
+            ob = eval(name)
+            clicklist.append(ob)
+            
+    def addmoves():
+        bg = pygame.image.load("sh_top.png")
+        bg = pygame.transform.scale(bg, (1000, 700))
+        mydis.blit(bg, (0, 0))
+        textSurfaceObj = fontObj2.render("MOVES : "+str(moves), True, white )
+        textRectObj = textSurfaceObj.get_rect()
+        textRectObj.center = (500,70)
+        mydis.blit(textSurfaceObj,textRectObj)
 
+    def randomise():
+        nonlocal randlist
+        k = random.randint(3, 10)
+        l = random.randint(3, 5)
+        l = l*2 + 1
+        
+        randlist = []
+        for i in range(16):
+            k = k+l
+            if k > 16:
+                k = k - 16
+            while k in randlist:
+                k += 1
+                if k > 16:
+                    k = k - 16
+            randlist.append(k)
+    def initpage():
+        nonlocal img
+        bg = pygame.image.load("blackbg.jpg")
+        bg = pygame.transform.scale(bg, (1000, 700))
+        mydis.blit(bg, (0, 0))
+        bg = pygame.image.load("sh_button.png")
+        bg = pygame.transform.scale(bg, (1000, 700))
+        mydis.blit(bg, (0, 0))
+        textSurfaceObj = fontObj2.render("BACK", True, white )
+        textRectObj = textSurfaceObj.get_rect()
+        textRectObj.center = (130,300)
+        mydis.blit(textSurfaceObj,textRectObj)
+    
+        textSurfaceObj = fontObj2.render("RESET", True, white )
+        textRectObj = textSurfaceObj.get_rect()
+        textRectObj.center = (130,400)
+        mydis.blit(textSurfaceObj,textRectObj)
+                
+        pygame.draw.rect(mydis, black, (620, 530, 120, 120))
+        org = pygame.image.load("shuffle.jpg")
+        org = pygame.transform.scale(org, (200, 200))
+        mydis.blit(org, (770, 100))
+        
+        addmoves()
+        cnt = 0
+        for i in range(4):
+            for j in range(4):
+                x = 260 + 120*j
+                y = 170 + 120*i
+                mydis.blit(img[randlist[cnt]-1],(x,y))
+                cnt = cnt + 1
+        for i in range(15):
+            imglist[i] = img[randlist[i]-1]
+        pygame.draw.rect(mydis, black, (620, 530, 120, 120))
+
+
+    def winner(a):
+        nonlocal diag
+        nonlocal dim
+        nonlocal dial
+        pygame.display.update()
+        pygame.time.wait(2000)
+        mydis.blit(dim,(0,0))
+        mydis.blit(dial,(0,0))
+        str1 = ''''You solved the puzzle...'''
+        str2 = str(a+1) + "moves"
+          
+        textSurfaceObj = fontObj3.render(str1, True, black )
+        textRectObj = textSurfaceObj.get_rect()
+        textRectObj.center = (500,300)
+        mydis.blit(textSurfaceObj,textRectObj)
+        textSurfaceObj = fontObj2.render(str2, True, black )
+        textRectObj = textSurfaceObj.get_rect()
+        textRectObj.center = (500,360)
+        mydis.blit(textSurfaceObj,textRectObj)
+        textSurfaceObj = fontObj3.render("RESTART", True, black )
+        textRectObj = textSurfaceObj.get_rect()
+        textRectObj.center = (375,445)
+        mydis.blit(textSurfaceObj,textRectObj)
+        textSurfaceObj = fontObj3.render("BACK", True, black )
+        textRectObj = textSurfaceObj.get_rect()
+        textRectObj.center = (625,445)
+        mydis.blit(textSurfaceObj,textRectObj)
+        pygame.display.update()
+        diag = 1
+
+    def check():
+        nonlocal moves
+        nonlocal imglist
+        nonlocal img
+        flag = 0
+        for i in range(15):
+            if imglist[i] != 0 and imglist[i] != img[i]:
+                flag = 1
+                break
+        if flag == 0:
+            winner(moves)
+            
+    reset()    
     while True:
         for event in pygame.event.get():
             mpos = pygame.mouse.get_pos()
@@ -134,6 +222,13 @@ def shuffle():
                 sys.exit()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
+              if diag == 0: 
+                if back_b.isover(mpos):
+                    print("go back to previous")
+                if reset_b.isover(mpos):
+                    moves = 0
+                    reset()
+                
                 for i in clicklist:
                     if i.isover(mpos):
                         pos = i.uid
@@ -148,43 +243,49 @@ def shuffle():
                                 left = pos - 1
                             else:
                                 left = -1
-
                             if top > 0:
                                 if imglist[top - 1] == 0:
-                                    mydis.blit(imglist[pos - 1],
-                                               (260 + (120 * ((top - 1) % 4)), 170 + (120 * ((top - 1) // 4))))
+                                    mydis.blit(imglist[pos - 1],(260 + (120 * ((top - 1) % 4)), 170 + (120 * ((top - 1) // 4))))
                                     imglist[top - 1] = imglist[pos - 1]
                                     imglist[pos - 1] = 0
-                                    pygame.draw.rect(mydis, black, (
-                                        260 + (120 * ((pos - 1) % 4)), 170 + (120 * ((pos - 1) // 4)), 120, 120))
+                                    moves += 1
+                                    addmoves()
+                                    pygame.draw.rect(mydis, black, (260 + (120 * ((pos - 1) % 4)), 170 + (120 * ((pos - 1) // 4)), 120, 120))
 
                             if bottom < 17:
                                 if imglist[bottom - 1] == 0:
-                                    mydis.blit(imglist[pos - 1],
-                                               (260 + (120 * ((bottom - 1) % 4)), 170 + (120 * ((bottom - 1) // 4))))
+                                    mydis.blit(imglist[pos - 1],(260 + (120 * ((bottom - 1) % 4)), 170 + (120 * ((bottom - 1) // 4))))
                                     imglist[bottom - 1] = imglist[pos - 1]
                                     imglist[pos - 1] = 0
-                                    pygame.draw.rect(mydis, black, (
-                                        260 + (120 * ((pos - 1) % 4)), 170 + (120 * ((pos - 1) // 4)), 120, 120))
+                                    moves += 1
+                                    addmoves()
+                                    pygame.draw.rect(mydis, black, (260 + (120 * ((pos - 1) % 4)), 170 + (120 * ((pos - 1) // 4)), 120, 120))
                             if left > 0:
                                 if imglist[left - 1] == 0:
-                                    mydis.blit(imglist[pos - 1],
-                                               (260 + (120 * ((left - 1) % 4)), 170 + (120 * ((left - 1) // 4))))
+                                    mydis.blit(imglist[pos - 1],(260 + (120 * ((left - 1) % 4)), 170 + (120 * ((left - 1) // 4))))
                                     imglist[left - 1] = imglist[pos - 1]
                                     imglist[pos - 1] = 0
-                                    pygame.draw.rect(mydis, black, (
-                                        260 + (120 * ((pos - 1) % 4)), 170 + (120 * ((pos - 1) // 4)), 120, 120))
+                                    moves += 1
+                                    addmoves()
+                                    pygame.draw.rect(mydis, black, (260 + (120 * ((pos - 1) % 4)), 170 + (120 * ((pos - 1) // 4)), 120, 120))
                             if right < 17:
                                 if imglist[right - 1] == 0:
-                                    mydis.blit(imglist[pos - 1],
-                                               (260 + (120 * ((right - 1) % 4)), 170 + (120 * ((right - 1) // 4))))
+                                    mydis.blit(imglist[pos - 1],(260 + (120 * ((right - 1) % 4)), 170 + (120 * ((right - 1) // 4))))
                                     imglist[right - 1] = imglist[pos - 1]
                                     imglist[pos - 1] = 0
-                                    pygame.draw.rect(mydis, black, (
-                                        260 + (120 * ((pos - 1) % 4)), 170 + (120 * ((pos - 1) // 4)), 120, 120))
-
+                                    moves += 1
+                                    addmoves()
+                                    pygame.draw.rect(mydis, black, ( 260 + (120 * ((pos - 1) % 4)), 170 + (120 * ((pos - 1) // 4)), 120, 120))
+                        check()
+              else:
+                       if rest_b.isover(mpos):
+                           moves = 0
+                           reset()
+                       if bck_b.isover(mpos):
+                           print("go back")
+                           diag = 0
+                  
         pygame.display.update()
-
 
 
 shuffle()
